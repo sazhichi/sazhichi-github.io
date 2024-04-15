@@ -11,7 +11,7 @@
 
   
   <title>
-    ECG |
+    欧拉路径/回路 |
     
     Hexo
   </title>
@@ -25,16 +25,20 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="ECG">
+  <meta name="description" content="前置知识：欧拉图 (两个要点：1.是连通图才有欧拉回路2.是否满足出度和入度的要求)  模板题 ：P7771 【模板】欧拉路径 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)  欧拉回路 1.• 对于无向图，欧拉回路就是在图的所有结点的度都是偶数，并且图是连通的情况下，从任意一个节点开始 dfs 都可以回到原点。 一道典题：P6066 [USACO05JAN] Watchcow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="欧拉路径&#x2F;回路">
 <meta property="og:url" content="http://example.com/2024/04/14/ECG/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前置知识：欧拉图 (两个要点：1.是连通图才有欧拉回路2.是否满足出度和入度的要求)  模板题 ：P7771 【模板】欧拉路径 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)  欧拉回路 1.• 对于无向图，欧拉回路就是在图的所有结点的度都是偶数，并且图是连通的情况下，从任意一个节点开始 dfs 都可以回到原点。 一道典题：P6066 [USACO05JAN] Watchcow">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img2024.cnblogs.com/blog/3322406/202403/3322406-20240327094945181-9189890.jpg">
 <meta property="article:published_time" content="2024-04-14T15:44:49.000Z">
-<meta property="article:modified_time" content="2024-04-14T15:51:19.011Z">
+<meta property="article:modified_time" content="2024-04-15T02:54:59.735Z">
 <meta property="article:author" content="sa_no_pool">
 <meta property="article:tag" content="图论">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img2024.cnblogs.com/blog/3322406/202403/3322406-20240327094945181-9189890.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -160,7 +164,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/211.jpg" alt="ECG">
+    <img fetchpriority="high" src="/images/211.jpg" alt="欧拉路径/回路">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -169,7 +173,7 @@
           
           
             <a href="/" id="logo">
-              <h1>ECG</h1>
+              <h1>欧拉路径/回路</h1>
             </a>
           
         
@@ -203,11 +207,26 @@
 
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h2 id="前置知识欧拉图-两个要点1是连通图才有欧拉回路2是否满足出度和入度的要求"><a class="markdownIt-Anchor" href="#前置知识欧拉图-两个要点1是连通图才有欧拉回路2是否满足出度和入度的要求"></a> 前置知识：欧拉图 (两个要点：1.是连通图才有欧拉回路2.是否满足出度和入度的要求)</h2>
+<h5 id="模板题-p7771-模板欧拉路径-洛谷-计算机科学教育新生态-luogucomcn"><a class="markdownIt-Anchor" href="#模板题-p7771-模板欧拉路径-洛谷-计算机科学教育新生态-luogucomcn"></a> 模板题 ：P7771 【模板】欧拉路径 - 洛谷 | 计算机科学教育新生态 (<a target="_blank" rel="noopener" href="http://luogu.com.cn">luogu.com.cn</a>)</h5>
+<h3 id="欧拉回路"><a class="markdownIt-Anchor" href="#欧拉回路"></a> 欧拉回路</h3>
+<p>1.• 对于无向图，欧拉回路就是在图的所有结点的度都是偶数，并且图是连通的情况下，从任意一个节点开始 dfs 都可以回到原点。<br />
+一道典题：P6066 [USACO05JAN] Watchcow S - 洛谷 | 计算机科学教育新生态 (<a target="_blank" rel="noopener" href="http://luogu.com.cn">luogu.com.cn</a>)从一点出发回到这一点的欧拉回路<br />
+2.P2731 [USACO3.3] 骑马修栅栏 Riding the Fences - 洛谷 | 计算机科学教育新生态 (<a target="_blank" rel="noopener" href="http://luogu.com.cn">luogu.com.cn</a>) 欧拉回路需要考虑重边是否计算</p>
+<h3 id="欧拉路径"><a class="markdownIt-Anchor" href="#欧拉路径"></a> 欧拉路径</h3>
+<p>1.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA10129">https://www.luogu.com.cn/problem/UVA10129</a> 欧拉路径的应用题，对于每个单词都要出现一次相当于欧拉路径中每条边都有出现一次，要考虑如何保留边的信息<br />
+2.对于判连通图来说，dfs有可能会爆栈，那么可以改用并查集</p>
+<h4 id="寻找欧拉路径"><a class="markdownIt-Anchor" href="#寻找欧拉路径"></a> 寻找欧拉路径</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//对于稠密图，删边操作还是很重要的，否则可能会T</span><br><span class="line">void dfs(int u)&#123;</span><br><span class="line">	for(int i = vis[u];i&lt;G[u].size();i = vis[u])&#123;</span><br><span class="line">		vis[u] = i+1;//删边操作很重要，当边特别大时</span><br><span class="line">		dfs(G[u][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	st.push(u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="判断是否能够形成欧拉回路路径省略判连通图"><a class="markdownIt-Anchor" href="#判断是否能够形成欧拉回路路径省略判连通图"></a> 判断是否能够形成欧拉回路/路径(省略判连通图)</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fa(i,1,n)&#123;</span><br><span class="line">		if(d[i][0] != d[i][1])&#123;</span><br><span class="line">			tag = 0;</span><br><span class="line">			if(d[i][0]-d[i][1]==1) mp[0]++,start = i;</span><br><span class="line">			else if(d[i][1]-d[i][0]==1) mp[1]++;</span><br><span class="line">			else &#123;</span><br><span class="line">				cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;</span><br><span class="line">				return 0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if((!tag)&amp;&amp;!(mp[0] == mp[1]&amp;&amp;mp[1] == 1)) &#123;</span><br><span class="line">		cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>放在最后<br />
+<img src="https://img2024.cnblogs.com/blog/3322406/202403/3322406-20240327094945181-9189890.jpg" alt="" /></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/14/ECG/" data-id="clv0cwy0100022w0k8p3t9y1x" data-title="ECG" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2024/04/14/ECG/" data-id="clv0d3xgw0001rc0k7wjg0pkx" data-title="欧拉路径/回路" class="article-share-link">Share</a>
       
       
       
@@ -258,7 +277,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">Contents</h3>
-  <div class="sidebar-toc-wrapper"></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%AC%A7%E6%8B%89%E5%9B%BE-%E4%B8%A4%E4%B8%AA%E8%A6%81%E7%82%B91%E6%98%AF%E8%BF%9E%E9%80%9A%E5%9B%BE%E6%89%8D%E6%9C%89%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF2%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E5%87%BA%E5%BA%A6%E5%92%8C%E5%85%A5%E5%BA%A6%E7%9A%84%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text"> 前置知识：欧拉图 (两个要点：1.是连通图才有欧拉回路2.是否满足出度和入度的要求)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-p7771-%E6%A8%A1%E6%9D%BF%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84-%E6%B4%9B%E8%B0%B7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2%E6%96%B0%E7%94%9F%E6%80%81-luogucomcn"><span class="toc-number">1.0.0.1.</span> <span class="toc-text"> 模板题 ：P7771 【模板】欧拉路径 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text"> 欧拉回路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84"><span class="toc-number">1.2.</span> <span class="toc-text"> 欧拉路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 寻找欧拉路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E8%83%BD%E5%A4%9F%E5%BD%A2%E6%88%90%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E8%B7%AF%E5%BE%84%E7%9C%81%E7%95%A5%E5%88%A4%E8%BF%9E%E9%80%9A%E5%9B%BE"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 判断是否能够形成欧拉回路&#x2F;路径(省略判连通图)</span></a></li></ol></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -355,7 +374,7 @@
       
         <div>
           <span class="icon-brush"></span>
-          16
+          472
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
           00:02
@@ -385,7 +404,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">Contents</h3>
-  <div class="sidebar-toc-wrapper"></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%AC%A7%E6%8B%89%E5%9B%BE-%E4%B8%A4%E4%B8%AA%E8%A6%81%E7%82%B91%E6%98%AF%E8%BF%9E%E9%80%9A%E5%9B%BE%E6%89%8D%E6%9C%89%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF2%E6%98%AF%E5%90%A6%E6%BB%A1%E8%B6%B3%E5%87%BA%E5%BA%A6%E5%92%8C%E5%85%A5%E5%BA%A6%E7%9A%84%E8%A6%81%E6%B1%82"><span class="toc-number">1.</span> <span class="toc-text"> 前置知识：欧拉图 (两个要点：1.是连通图才有欧拉回路2.是否满足出度和入度的要求)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-p7771-%E6%A8%A1%E6%9D%BF%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84-%E6%B4%9B%E8%B0%B7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2%E6%96%B0%E7%94%9F%E6%80%81-luogucomcn"><span class="toc-number">1.0.0.1.</span> <span class="toc-text"> 模板题 ：P7771 【模板】欧拉路径 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF"><span class="toc-number">1.1.</span> <span class="toc-text"> 欧拉回路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84"><span class="toc-number">1.2.</span> <span class="toc-text"> 欧拉路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E6%AC%A7%E6%8B%89%E8%B7%AF%E5%BE%84"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 寻找欧拉路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E8%83%BD%E5%A4%9F%E5%BD%A2%E6%88%90%E6%AC%A7%E6%8B%89%E5%9B%9E%E8%B7%AF%E8%B7%AF%E5%BE%84%E7%9C%81%E7%95%A5%E5%88%A4%E8%BF%9E%E9%80%9A%E5%9B%BE"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 判断是否能够形成欧拉回路&#x2F;路径(省略判连通图)</span></a></li></ol></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
