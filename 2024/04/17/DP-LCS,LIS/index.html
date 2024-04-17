@@ -11,7 +11,7 @@
 
   
   <title>
-    Archives: 2013/12 |
+    LCS/LIS问题 |
     
     Hexo
   </title>
@@ -25,12 +25,17 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2013/12/index.html">
+  <meta name="description" content="LCS为最长公共子序列,LIS为最长上升子序列  LCS的 O(n^2) 求法 123456789int dp() &#123;  for (int i &#x3D; 1; i &lt;&#x3D; n; i++)    for (int j &#x3D; 1; j &lt;&#x3D; m; j++)      if (a[i] &#x3D;&#x3D; b[j])        f[i][j] &#x3D; f[i - 1][j - 1] + 1;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LCS&#x2F;LIS问题">
+<meta property="og:url" content="http://example.com/2024/04/17/DP-LCS,LIS/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LCS为最长公共子序列,LIS为最长上升子序列  LCS的 O(n^2) 求法 123456789int dp() &#123;  for (int i &#x3D; 1; i &lt;&#x3D; n; i++)    for (int j &#x3D; 1; j &lt;&#x3D; m; j++)      if (a[i] &#x3D;&#x3D; b[j])        f[i][j] &#x3D; f[i - 1][j - 1] + 1;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-17T15:01:49.000Z">
+<meta property="article:modified_time" content="2024-04-17T13:58:52.798Z">
 <meta property="article:author" content="sa_no_pool">
+<meta property="article:tag" content="DP">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -157,7 +162,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/211.jpg" alt="">
+    <img fetchpriority="high" src="/images/211.jpg" alt="LCS/LIS问题">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -166,7 +171,7 @@
           
           
             <a href="/" id="logo">
-              <h1>Archives</h1>
+              <h1>LCS/LIS问题</h1>
             </a>
           
         
@@ -183,62 +188,88 @@
 
         <div id="content" class="outer">
           
-          <section id="main">
-<div class="archives-outer-wrap wow fadeInUp">
-  <div class="tag-wrap">
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/图论/">图论</a>
-      </div>
-    
-  </div>
-  <div class="category-wrap">
-    
-  </div>
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap wow fadeInUp">
-        <div class="archive-year-wrap">
-          <a href="/archives/2013" class="archive-year">2013</a>
-        </div>
-        <div class="archives">
-          <ul>
-            
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2013/12/24/hello-world/">
-      <time class="dt-published" datetime="2013-12-24T09:49:32.000Z" itemprop="datePublished">12-24</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2013/12/24/hello-world/">Hello World</a>
-      
-    
-  </div>
-</li>
+          <section id="main"><article id="post-DP-LCS,LIS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    <div class="article-meta">
+      <div class="article-date wow slideInLeft">
+  <a href="/2024/04/17/DP-LCS,LIS/" class="article-date-link">
+    <time datetime="2024-04-17T15:01:49.000Z" itemprop="datePublished">2024-04-17</time>
+  </a>
+</div>
 
-            
-            
-          </ul>
-        </div>
-      </section>
-  
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="lcs为最长公共子序列lis为最长上升子序列"><a class="markdownIt-Anchor" href="#lcs为最长公共子序列lis为最长上升子序列"></a> LCS为最长公共子序列,LIS为最长上升子序列</h3>
+<h4 id="lcs的-on2-求法"><a class="markdownIt-Anchor" href="#lcs的-on2-求法"></a> LCS的 <em>O(n^2)</em> 求法</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int dp() &#123;</span><br><span class="line">  for (int i = 1; i &lt;= n; i++)</span><br><span class="line">    for (int j = 1; j &lt;= m; j++)</span><br><span class="line">      if (a[i] == b[j])</span><br><span class="line">        f[i][j] = f[i - 1][j - 1] + 1;</span><br><span class="line">      else</span><br><span class="line">        f[i][j] = max(f[i - 1][j], f[i][j - 1]);</span><br><span class="line">  return f[n][m];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="lis二分优化的典题同时考察了lcs-p1439-模板最长公共子序列-洛谷-计算机科学教育新生态-luogucomcn"><a class="markdownIt-Anchor" href="#lis二分优化的典题同时考察了lcs-p1439-模板最长公共子序列-洛谷-计算机科学教育新生态-luogucomcn"></a> LIS二分优化的典题同时考察了LCS <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1439">P1439 【模板】最长公共子序列 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a></h4>
+<h6 id="定义dp数组为长度为i的数组的末尾的最小元素设a数组默认为递增顺序则b数组上升即可"><a class="markdownIt-Anchor" href="#定义dp数组为长度为i的数组的末尾的最小元素设a数组默认为递增顺序则b数组上升即可"></a> 定义dp数组为长度为i的数组的末尾的最小元素，设a数组默认为递增顺序，则b数组上升即可</h6>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for(int i = 1;i&lt;=n;i++)&#123;</span><br><span class="line">		if(mp[b[i]]&gt;f[len]) f[++len] = mp[b[i]];</span><br><span class="line">		else&#123;</span><br><span class="line">			int l = 0,r = len;</span><br><span class="line">			while(l&lt;r)&#123;</span><br><span class="line">				LL mid = l+r&gt;&gt;1;</span><br><span class="line">				if(f[mid]&gt;mp[b[i]]) r = mid;</span><br><span class="line">				else l = mid+1;</span><br><span class="line">			&#125;</span><br><span class="line">			f[l] = min(f[l],mp[b[i]]);</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/17/DP-LCS,LIS/" data-id="clv3vwzab0002ho0k1tqybe0c" data-title="LCS/LIS问题" class="article-share-link">Share</a>
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/" rel="tag">DP</a></li></ul>
+
+
+    </footer>
   </div>
+  
+    
+  <nav id="article-nav" class="wow fadeInUp">
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="分层图最短路" class="lazyload">
+        
+      
+      <a href="/2024/04/16/%E5%88%86%E5%B1%82%E5%9B%BE%E6%8B%86%E7%82%B9/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          分层图最短路
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
 
 
 
 </section>
           
             <aside id="sidebar">
-  <div class="sidebar-wrap wow fadeInRight ">
+  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#lcs%E4%B8%BA%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97lis%E4%B8%BA%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text"> LCS为最长公共子序列,LIS为最长上升子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lcs%E7%9A%84-on2-%E6%B1%82%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text"> LCS的 O(n^2) 求法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lis%E4%BA%8C%E5%88%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%85%B8%E9%A2%98%E5%90%8C%E6%97%B6%E8%80%83%E5%AF%9F%E4%BA%86lcs-p1439-%E6%A8%A1%E6%9D%BF%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97-%E6%B4%9B%E8%B0%B7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2%E6%96%B0%E7%94%9F%E6%80%81-luogucomcn"><span class="toc-number">1.2.</span> <span class="toc-text"> LIS二分优化的典题同时考察了LCS P1439 【模板】最长公共子序列 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89dp%E6%95%B0%E7%BB%84%E4%B8%BA%E9%95%BF%E5%BA%A6%E4%B8%BAi%E7%9A%84%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%AB%E5%B0%BE%E7%9A%84%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0%E8%AE%BEa%E6%95%B0%E7%BB%84%E9%BB%98%E8%AE%A4%E4%B8%BA%E9%80%92%E5%A2%9E%E9%A1%BA%E5%BA%8F%E5%88%99b%E6%95%B0%E7%BB%84%E4%B8%8A%E5%8D%87%E5%8D%B3%E5%8F%AF"><span class="toc-number">1.2.0.1.</span> <span class="toc-text"> 定义dp数组为长度为i的数组的末尾的最小元素，设a数组默认为递增顺序，则b数组上升即可</span></a></li></ol></li></ol></li></ol></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/ssss.jpg" data-sizes="auto" alt="sa_no_pool" class="lazyload">
   <div class="sidebar-author-name">sa_no_pool</div>
   <div class="sidebar-description"></div>
@@ -254,7 +285,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -265,6 +296,10 @@
   
     <div class=icon-zhihu>
       <a href=https://www.zhihu.com/people/ssssrrrr-18 itemprop="url" target="_blank" aria-label="zhihu"></a>
+    </div>
+  
+    <div class=icon-Virtual Judge>
+      <a href=https://vjudge.net/user/sa_no_pool itemprop="url" target="_blank" aria-label="Virtual Judge"></a>
     </div>
   
 </div>
@@ -295,8 +330,13 @@
     </div>
   
 </div>
-
+</div>
     
+    
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
     
   </div>
 
@@ -327,7 +367,7 @@
       
         <div>
           <span class="icon-brush"></span>
-          608
+          809
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
           00:03
@@ -355,7 +395,12 @@
       <nav id="mobile-nav">
   <div class="sidebar-wrap">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#lcs%E4%B8%BA%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97lis%E4%B8%BA%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text"> LCS为最长公共子序列,LIS为最长上升子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lcs%E7%9A%84-on2-%E6%B1%82%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text"> LCS的 O(n^2) 求法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lis%E4%BA%8C%E5%88%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%85%B8%E9%A2%98%E5%90%8C%E6%97%B6%E8%80%83%E5%AF%9F%E4%BA%86lcs-p1439-%E6%A8%A1%E6%9D%BF%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97-%E6%B4%9B%E8%B0%B7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%95%99%E8%82%B2%E6%96%B0%E7%94%9F%E6%80%81-luogucomcn"><span class="toc-number">1.2.</span> <span class="toc-text"> LIS二分优化的典题同时考察了LCS P1439 【模板】最长公共子序列 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89dp%E6%95%B0%E7%BB%84%E4%B8%BA%E9%95%BF%E5%BA%A6%E4%B8%BAi%E7%9A%84%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%AB%E5%B0%BE%E7%9A%84%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0%E8%AE%BEa%E6%95%B0%E7%BB%84%E9%BB%98%E8%AE%A4%E4%B8%BA%E9%80%92%E5%A2%9E%E9%A1%BA%E5%BA%8F%E5%88%99b%E6%95%B0%E7%BB%84%E4%B8%8A%E5%8D%87%E5%8D%B3%E5%8F%AF"><span class="toc-number">1.2.0.1.</span> <span class="toc-text"> 定义dp数组为长度为i的数组的末尾的最小元素，设a数组默认为递增顺序，则b数组上升即可</span></a></li></ol></li></ol></li></ol></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/ssss.jpg" data-sizes="auto" alt="sa_no_pool" class="lazyload">
   <div class="sidebar-author-name">sa_no_pool</div>
   <div class="sidebar-description"></div>
@@ -371,7 +416,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -382,6 +427,10 @@
   
     <div class=icon-zhihu>
       <a href=https://www.zhihu.com/people/ssssrrrr-18 itemprop="url" target="_blank" aria-label="zhihu"></a>
+    </div>
+  
+    <div class=icon-Virtual Judge>
+      <a href=https://vjudge.net/user/sa_no_pool itemprop="url" target="_blank" aria-label="Virtual Judge"></a>
     </div>
   
 </div>
@@ -412,9 +461,14 @@
     </div>
   
 </div>
-
+</div>
     
   </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
   
 </nav>
 

@@ -187,10 +187,43 @@
   
   <div class="post-wrap-left wow fadeInUp">
     
-      <a class="post-link" href="/2024/04/16/%E5%88%86%E5%B1%82%E5%9B%BE%E6%8B%86%E7%82%B9/" aria-label="分层图最短路"></a>
+      <a class="post-link" href="/2024/04/17/DP-LCS,LIS/" aria-label="LCS/LIS问题"></a>
     
     
     <div class="post-cover-left">
+      
+        
+        
+          <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="LCS/LIS问题" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-04-17</span>
+        <span><span class="icon-pencil"></span>217 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">LCS/LIS问题</h2>
+      <article class="post-article">
+        
+           LCS为最长公共子序列,LIS为最长上升子序列
+ LCS的 O(n^2) 求法
+123456789int dp() &amp;#123;  for (int i = 1; i &amp;lt;= n; i++)    for (int j = 1; j &amp;lt;= m; j++)      if (a[i] == b[j])        f[i][j] = f[i - 1][j - 1] + 1;      else        f[i][j] = max(f[i - 1][j], f[i][j - 1]);  return f[n][m];&amp;#125;
+ LIS二分优化的典题同时考察了LCS P143
+        
+      </article>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrap-right wow fadeInUp">
+    
+    <a class="post-link" href="/2024/04/16/%E5%88%86%E5%B1%82%E5%9B%BE%E6%8B%86%E7%82%B9/"></a>
+    
+    <div class="post-cover-right">
       
         
         
@@ -227,11 +260,12 @@ https://www.luogu.com.cn/problem/P4568
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/04/14/ECG/"></a>
+      <a class="post-link" href="/2024/04/14/ECG/" aria-label="欧拉路径/回路"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
@@ -254,38 +288,6 @@ https://www.luogu.com.cn/problem/P4568
 1.• 对于无向图，欧拉回路就是在图的所有结点的度都是偶数，并且图是连通的情况下，从任意一个节点开始 dfs 都可以回到原点。
 一道典题：P6066 [USACO05JAN] Watchcow S - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)从一点出发回到这一点的欧拉回路
 2.P2731 [USACO3.3] 骑马修栅栏 Riding the Fences - 洛谷 |
-        
-      </article>
-    </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrap-left wow fadeInUp">
-    
-      <a class="post-link" href="/2013/12/24/hello-world/" aria-label="Hello World"></a>
-    
-    
-    <div class="post-cover-left">
-      
-        
-        
-          <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="Hello World" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2013-12-24</span>
-        <span><span class="icon-pencil"></span>16 words</span>
-        <span><span class="icon-clock"></span>1 min</span>
-      </div>
-      <h2 class="post-title">Hello World</h2>
-      <article class="post-article">
-        
-          Welcome to Hexo! This is your very first post. Check documentation to learn how to use.
-
         
       </article>
     </div>
@@ -317,7 +319,7 @@ https://www.luogu.com.cn/problem/P4568
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -328,6 +330,10 @@ https://www.luogu.com.cn/problem/P4568
   
     <div class=icon-zhihu>
       <a href=https://www.zhihu.com/people/ssssrrrr-18 itemprop="url" target="_blank" aria-label="zhihu"></a>
+    </div>
+  
+    <div class=icon-Virtual Judge>
+      <a href=https://vjudge.net/user/sa_no_pool itemprop="url" target="_blank" aria-label="Virtual Judge"></a>
     </div>
   
 </div>
@@ -390,7 +396,7 @@ https://www.luogu.com.cn/problem/P4568
       
         <div>
           <span class="icon-brush"></span>
-          608
+          809
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
           00:03
@@ -434,7 +440,7 @@ https://www.luogu.com.cn/problem/P4568
   </div>
   <div class="sidebar-state-tag">
     <div>Tags</div>
-    <div class="sidebar-state-number">1</div>
+    <div class="sidebar-state-number">2</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -445,6 +451,10 @@ https://www.luogu.com.cn/problem/P4568
   
     <div class=icon-zhihu>
       <a href=https://www.zhihu.com/people/ssssrrrr-18 itemprop="url" target="_blank" aria-label="zhihu"></a>
+    </div>
+  
+    <div class=icon-Virtual Judge>
+      <a href=https://vjudge.net/user/sa_no_pool itemprop="url" target="_blank" aria-label="Virtual Judge"></a>
     </div>
   
 </div>

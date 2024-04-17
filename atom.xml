@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-04-16T15:01:09.944Z</updated>
+  <updated>2024-04-17T13:58:52.798Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LCS/LIS问题</title>
+    <link href="http://example.com/2024/04/17/DP-LCS,LIS/"/>
+    <id>http://example.com/2024/04/17/DP-LCS,LIS/</id>
+    <published>2024-04-17T15:01:49.000Z</published>
+    <updated>2024-04-17T13:58:52.798Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;lcs为最长公共子序列lis为最长上升子序列&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#lcs为最长公共子序列lis为最长上升子序列&quot;&gt;&lt;/a&gt; LCS为最长公共子序列,LIS为最长上升子序列&lt;/h3&gt;
+&lt;h4</summary>
+        
+      
+    
+    
+    
+    
+    <category term="DP" scheme="http://example.com/tags/DP/"/>
+    
+  </entry>
   
   <entry>
     <title>分层图最短路</title>
@@ -60,27 +84,6 @@
     
     
     <category term="图论" scheme="http://example.com/tags/%E5%9B%BE%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2013/12/24/hello-world/"/>
-    <id>http://example.com/2013/12/24/hello-world/</id>
-    <published>2013-12-24T09:49:32.000Z</published>
-    <updated>2024-04-14T14:53:35.901Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;http://zespia.tw/hexo&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
