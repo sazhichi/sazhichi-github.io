@@ -11,7 +11,7 @@
 
   
   <title>
-    分层图最短路 |
+    强连通图(SCC) |
     
     Hexo
   </title>
@@ -25,20 +25,18 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="前置知识：最短路算法  分层图大多来说都是很板的题 1.构建分层图：简单来说是运用了拆点的思想，将每一种可能都建出一张图，每层图间连一条边 2.DP最短路：考虑dis[u][cnt]为在u点使用了cnt个条件产生的最短路  一道典题https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P4568 可以用两种方法都做一次，当然分层图的拆点思想是最重要的   reference http">
+  <meta name="description" content="强连通图竟然是我在练差分约束的时候，遇到需要缩点的题才学的 好了废话少说  概念简介   强连通的定义是：有向图 G 强连通是指，G 中任意两个结点连通。   强连通分量（Strongly Connected Components，SCC）的定义是：极大的强连通子图.    求SCC一般有三种算法当然本人只会tarjan算法  Tarjan 算法（具体原理参考文末oiwiki链接） 1234567">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分层图最短路">
-<meta property="og:url" content="http://example.com/2024/04/16/%E5%88%86%E5%B1%82%E5%9B%BE%E6%8B%86%E7%82%B9/index.html">
+<meta property="og:title" content="强连通图(SCC)">
+<meta property="og:url" content="http://example.com/2024/05/01/scc/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前置知识：最短路算法  分层图大多来说都是很板的题 1.构建分层图：简单来说是运用了拆点的思想，将每一种可能都建出一张图，每层图间连一条边 2.DP最短路：考虑dis[u][cnt]为在u点使用了cnt个条件产生的最短路  一道典题https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;problem&#x2F;P4568 可以用两种方法都做一次，当然分层图的拆点思想是最重要的   reference http">
+<meta property="og:description" content="强连通图竟然是我在练差分约束的时候，遇到需要缩点的题才学的 好了废话少说  概念简介   强连通的定义是：有向图 G 强连通是指，G 中任意两个结点连通。   强连通分量（Strongly Connected Components，SCC）的定义是：极大的强连通子图.    求SCC一般有三种算法当然本人只会tarjan算法  Tarjan 算法（具体原理参考文末oiwiki链接） 1234567">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img2024.cnblogs.com/blog/3322406/202403/3322406-20240327095107634-558154757.png">
-<meta property="article:published_time" content="2024-04-16T15:01:49.000Z">
-<meta property="article:modified_time" content="2024-04-16T15:01:09.944Z">
+<meta property="article:published_time" content="2024-05-01T15:01:49.000Z">
+<meta property="article:modified_time" content="2024-05-01T15:10:20.199Z">
 <meta property="article:author" content="sa_no_pool">
 <meta property="article:tag" content="图论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img2024.cnblogs.com/blog/3322406/202403/3322406-20240327095107634-558154757.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -164,7 +162,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/211.jpg" alt="分层图最短路">
+    <img fetchpriority="high" src="/images/211.jpg" alt="强连通图(SCC)">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -173,7 +171,7 @@
           
           
             <a href="/" id="logo">
-              <h1>分层图最短路</h1>
+              <h1>强连通图(SCC)</h1>
             </a>
           
         
@@ -190,12 +188,12 @@
 
         <div id="content" class="outer">
           
-          <section id="main"><article id="post-分层图拆点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main"><article id="post-scc" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     <div class="article-meta">
       <div class="article-date wow slideInLeft">
-  <a href="/2024/04/16/%E5%88%86%E5%B1%82%E5%9B%BE%E6%8B%86%E7%82%B9/" class="article-date-link">
-    <time datetime="2024-04-16T15:01:49.000Z" itemprop="datePublished">2024-04-16</time>
+  <a href="/2024/05/01/scc/" class="article-date-link">
+    <time datetime="2024-05-01T15:01:49.000Z" itemprop="datePublished">2024-05-01</time>
   </a>
 </div>
 
@@ -207,22 +205,40 @@
 
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="前置知识最短路算法"><a class="markdownIt-Anchor" href="#前置知识最短路算法"></a> 前置知识：最短路算法</h2>
-<h3 id="分层图大多来说都是很板的题"><a class="markdownIt-Anchor" href="#分层图大多来说都是很板的题"></a> 分层图大多来说都是很板的题</h3>
-<p>1.构建分层图：简单来说是运用了拆点的思想，将每一种可能都建出一张图，每层图间连一条边<br />
-2.DP最短路：考虑dis[u][cnt]为在u点使用了cnt个条件产生的最短路</p>
+        <p><s>强连通图竟然是我在练差分约束的时候，遇到需要缩点的题才学的</s></p>
+<p>好了废话少说</p>
+<h3 id="概念简介"><a class="markdownIt-Anchor" href="#概念简介"></a> 概念简介</h3>
 <ul>
-<li>一道典题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4568">https://www.luogu.com.cn/problem/P4568</a> 可以用两种方法都做一次，当然分层图的拆点思想是最重要的</li>
+<li>
+<p>强连通的定义是：有向图 G 强连通是指，G 中任意两个结点连通。</p>
+</li>
+<li>
+<p>强连通分量（Strongly Connected Components，SCC）的定义是：极大的强连通子图.</p>
+</li>
 </ul>
-<h5 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> reference</h5>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4568">https://www.luogu.com.cn/problem/P4568</a><br />
-放在最后<br />
-<img src="https://img2024.cnblogs.com/blog/3322406/202403/3322406-20240327095107634-558154757.png" alt="" /></p>
+<h5 id="求scc一般有三种算法当然本人只会tarjan算法"><a class="markdownIt-Anchor" href="#求scc一般有三种算法当然本人只会tarjan算法"></a> 求SCC一般有三种算法当然本人只会tarjan算法</h5>
+<h3 id="tarjan-算法具体原理参考文末oiwiki链接"><a class="markdownIt-Anchor" href="#tarjan-算法具体原理参考文末oiwiki链接"></a> Tarjan 算法（具体原理参考文末oiwiki链接）</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; G[N];</span><br><span class="line">int dfn[N],low[N],q[N],dfncnt,in_stack[N],tt;</span><br><span class="line">int scc[N],sc,sz[N];</span><br><span class="line">bool st[N];</span><br><span class="line">// dfn序，low，instack，q；</span><br><span class="line">void tarjan(int u)&#123;</span><br><span class="line">	dfn[u] = low[u] = ++dfncnt,q[++tt] = u,in_stack[u] = 1;// ++dfncnt!!</span><br><span class="line">	for(auto v:G[u])&#123;</span><br><span class="line">		if(!dfn[v])&#123;</span><br><span class="line">			tarjan(v);</span><br><span class="line">			low[u] = min(low[u],low[v]);</span><br><span class="line">		&#125;else if(in_stack[v])&#123;</span><br><span class="line">			low[u] = min(low[u],dfn[v]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if(dfn[u] == low[u])&#123;</span><br><span class="line">		++sc;</span><br><span class="line">		while(q[tt]!=u)&#123;</span><br><span class="line">			scc[q[tt]]= sc;</span><br><span class="line">			sz[sc]++;</span><br><span class="line">			in_stack[q[tt]] = 0;</span><br><span class="line">			tt--;</span><br><span class="line">		&#125;</span><br><span class="line">		scc[q[tt]]= sc;</span><br><span class="line">		sz[sc]++;</span><br><span class="line">		in_stack[q[tt]] = 0;</span><br><span class="line">		tt--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="scc典题"><a class="markdownIt-Anchor" href="#scc典题"></a> SCC典题</h4>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3387">P3387 【模板】缩点 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a> 缩点就是将一个SCC缩为一个点然后再进行拓扑排序，最短路等操作</p>
+</li>
+<li>
+<p>[P3275 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3275">SCOI2011] 糖果 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)</a> 缩点加差分约束，要求变量总和最小就跑最长路，让后观察性质，最长路中如果出现了正权环则无解，而题中有0和1两种权值</p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/p/10091">#10091. 「一本通 3.5 例 1」受欢迎的牛 - 题目 - LibreOJ (loj.ac)</a> oiwiki上的练习题观察出度入度的性质</p>
+</li>
+</ul>
+<blockquote>
+<p>reference: <a target="_blank" rel="noopener" href="https://oi-wiki.org/graph/scc/">强连通分量 - OI Wiki (oi-wiki.org)</a></p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/16/%E5%88%86%E5%B1%82%E5%9B%BE%E6%8B%86%E7%82%B9/" data-id="clvnyswu200029o0kg2l139ag" data-title="分层图最短路" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2024/05/01/scc/" data-id="clvnyswu600059o0kanjw9b0a" data-title="强连通图(SCC)" class="article-share-link">Share</a>
       
       
       
@@ -238,35 +254,19 @@
     
   <nav id="article-nav" class="wow fadeInUp">
     
-      <div class="article-nav-link-wrap article-nav-link-left">
-        
-          
-          
-            <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="LCS/LIS问题" class="lazyload">
-          
-        
-        <a href="/2024/04/17/DP-LCS,LIS/"></a>
-        <div class="article-nav-caption">Newer</div>
-        <h3 class="article-nav-title">
-          
-            LCS/LIS问题
-          
-        </h3>
-      </div>
-    
     
     <div class="article-nav-link-wrap article-nav-link-right">
       
         
         
-          <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="欧拉路径/回路" class="lazyload">
+          <img data-src="https://d-sketon.top/img/backimg/bg1.jpg" data-sizes="auto" alt="LCS/LIS问题" class="lazyload">
         
       
-      <a href="/2024/04/14/ECG/"></a>
+      <a href="/2024/04/17/DP-LCS,LIS/"></a>
       <div class="article-nav-caption">Older</div>
       <h3 class="article-nav-title">
         
-          欧拉路径/回路
+          LCS/LIS问题
         
       </h3>
     </div>
@@ -289,7 +289,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">Contents</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 前置知识：最短路算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E5%9B%BE%E5%A4%A7%E5%A4%9A%E6%9D%A5%E8%AF%B4%E9%83%BD%E6%98%AF%E5%BE%88%E6%9D%BF%E7%9A%84%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text"> 分层图大多来说都是很板的题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#reference"><span class="toc-number">1.1.0.1.</span> <span class="toc-text"> reference</span></a></li></ol></li></ol></li></ol></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 概念简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82scc%E4%B8%80%E8%88%AC%E6%9C%89%E4%B8%89%E7%A7%8D%E7%AE%97%E6%B3%95%E5%BD%93%E7%84%B6%E6%9C%AC%E4%BA%BA%E5%8F%AA%E4%BC%9Atarjan%E7%AE%97%E6%B3%95"><span class="toc-number">1.0.1.</span> <span class="toc-text"> 求SCC一般有三种算法当然本人只会tarjan算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tarjan-%E7%AE%97%E6%B3%95%E5%85%B7%E4%BD%93%E5%8E%9F%E7%90%86%E5%8F%82%E8%80%83%E6%96%87%E6%9C%ABoiwiki%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text"> Tarjan 算法（具体原理参考文末oiwiki链接）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#scc%E5%85%B8%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text"> SCC典题</span></a></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -416,7 +416,7 @@
     
       <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
   <h3 class="toc-title">Contents</h3>
-  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 前置知识：最短路算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E5%9B%BE%E5%A4%A7%E5%A4%9A%E6%9D%A5%E8%AF%B4%E9%83%BD%E6%98%AF%E5%BE%88%E6%9D%BF%E7%9A%84%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text"> 分层图大多来说都是很板的题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#reference"><span class="toc-number">1.1.0.1.</span> <span class="toc-text"> reference</span></a></li></ol></li></ol></li></ol></li></ol></div>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text"> 概念简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B1%82scc%E4%B8%80%E8%88%AC%E6%9C%89%E4%B8%89%E7%A7%8D%E7%AE%97%E6%B3%95%E5%BD%93%E7%84%B6%E6%9C%AC%E4%BA%BA%E5%8F%AA%E4%BC%9Atarjan%E7%AE%97%E6%B3%95"><span class="toc-number">1.0.1.</span> <span class="toc-text"> 求SCC一般有三种算法当然本人只会tarjan算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tarjan-%E7%AE%97%E6%B3%95%E5%85%B7%E4%BD%93%E5%8E%9F%E7%90%86%E5%8F%82%E8%80%83%E6%96%87%E6%9C%ABoiwiki%E9%93%BE%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text"> Tarjan 算法（具体原理参考文末oiwiki链接）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#scc%E5%85%B8%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text"> SCC典题</span></a></li></ol></li></ol></div>
 </div>
 </div>
       <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">

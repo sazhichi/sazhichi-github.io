@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-04-17T14:25:01.823Z</updated>
+  <updated>2024-05-01T15:10:20.199Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>强连通图(SCC)</title>
+    <link href="http://example.com/2024/05/01/scc/"/>
+    <id>http://example.com/2024/05/01/scc/</id>
+    <published>2024-05-01T15:01:49.000Z</published>
+    <updated>2024-05-01T15:10:20.199Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;s&gt;强连通图竟然是我在练差分约束的时候，遇到需要缩点的题才学的&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;好了废话少说&lt;/p&gt;
+&lt;h3 id=&quot;概念简介&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#概念简介&quot;&gt;&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="图论" scheme="http://example.com/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>LCS/LIS问题</title>
